@@ -12,15 +12,17 @@ class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null) return null;
 
-        ListNode tail = head;
-        for (int i = 0; i < k; i++) {
-            if (tail == null) return head;
-            tail = tail.next;
-        }
+        ListNode temp = head;
+        int count = 0;
+      while (count < k) {
+    if (temp == null) return head;
+    temp = temp.next;
+    count++;
+}
+        ListNode newnode = reverse(head, temp);
 
-        ListNode newHead = reverse(head, tail);
-        head.next = reverseKGroup(tail, k);
-        return newHead;
+        head.next = reverseKGroup(temp, k);
+        return newnode;
     }
 
     private ListNode reverse(ListNode cur, ListNode end) {
